@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeduNetcore", "TeduNetcore\TeduNetcore.csproj", "{D61D06D7-0D38-40E7-A0F8-6FB730C1BD86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D61D06D7-0D38-40E7-A0F8-6FB730C1BD86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D61D06D7-0D38-40E7-A0F8-6FB730C1BD86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D61D06D7-0D38-40E7-A0F8-6FB730C1BD86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D61D06D7-0D38-40E7-A0F8-6FB730C1BD86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D79380E1-B4C6-415D-B127-913BE767E969}
+	EndGlobalSection
+EndGlobal
