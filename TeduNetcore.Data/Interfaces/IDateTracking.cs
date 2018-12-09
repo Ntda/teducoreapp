@@ -2,7 +2,7 @@
 
 namespace TeduNetcore.Data.Interfaces
 {
-    internal interface IDateTracking
+    public interface IDateTracking
     {
         DateTime DateCreated { get; set; }
 

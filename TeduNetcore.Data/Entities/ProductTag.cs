@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using TeduNetcore.Infrastructure.SharedKernel;
 
-namespace TeduCoreApp.Data.Entities
+namespace TeduNetcore.Data.Entities
 {
     public class ProductTag : DomainEntity<int>
     {

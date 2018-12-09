@@ -6,7 +6,7 @@ using TeduNetcore.Data.Enums;
 using TeduNetcore.Data.Interfaces;
 using TeduNetcore.Infrastructure.SharedKernel;
 
-namespace TeduCoreApp.Data.Entities
+namespace TeduNetcore.Data.Entities
 {
     [Table("Products")]
     public class Product : DomainEntity<int>, ISwitchAble, IDateTracking, IHasSeoMetaData

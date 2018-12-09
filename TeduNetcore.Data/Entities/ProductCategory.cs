@@ -4,7 +4,7 @@ using TeduNetcore.Data.Enums;
 using TeduNetcore.Data.Interfaces;
 using TeduNetcore.Infrastructure.SharedKernel;
 
-namespace TeduCoreApp.Data.Entities
+namespace TeduNetcore.Data.Entities
 {
     public class ProductCategory : DomainEntity<int>,
         IHasSeoMetaData, ISwitchAble, ISortAble, IDateTracking

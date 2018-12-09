@@ -5,7 +5,7 @@ namespace TeduNetcore.Data.EF.Extensions
 {
     public static class ModelBuilderExtensions
     {
-        public static void AddConfiguration<TEntity>(this ModelBuilder modelBuilder,DbEntityConfiguration<TEntity> dbEntityConfiguration) where TEntity : class
+        public static void AddConfiguration<TEntity>(this ModelBuilder modelBuilder, DbEntityConfiguration<TEntity> dbEntityConfiguration) where TEntity : class
         {
             modelBuilder.Entity<TEntity>(dbEntityConfiguration.Configure);
         }

@@ -5,7 +5,7 @@ using TeduNetcore.Data.Enums;
 
 namespace TeduNetcore.Data.Interfaces
 {
-    interface ISwitchAble
+    public interface ISwitchAble
     {
         Status Status { get; set; }
     }

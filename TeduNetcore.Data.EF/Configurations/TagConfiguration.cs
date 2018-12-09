@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TeduCoreApp.Data.Entities;
+using TeduNetcore.Data.Entities;
 using TeduNetcore.Data.EF.Extensions;
 
 namespace TeduNetcore.Data.EF.Configurations
