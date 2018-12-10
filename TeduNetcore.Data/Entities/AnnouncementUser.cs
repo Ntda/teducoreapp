@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using TeduNetcore.Infrastructure.SharedKernel;
 
@@ -13,7 +14,7 @@ namespace TeduNetcore.Data.Entities
 
         [StringLength(450)]
         [Required]
-        public string UserId { get; set; }
+        public Guid UserId { get; set; }
 
         public bool? HasRead { get; set; }
 

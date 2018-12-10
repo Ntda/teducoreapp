@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TeduNetcore.Data.EF.Extensions;
 using TeduNetcore.Data.Entities;
-using TeduNetcore.Data.EF.Extensions;
 
 namespace TeduNetcore.Data.EF.Configurations
 {

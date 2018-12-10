@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
+using TeduNetcore.Data.EF;
 
 namespace TeduNetcore
 {
@@ -14,12 +12,31 @@ namespace TeduNetcore
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            IWebHost host = BuildWebHost(args);
+            using (IServiceScope scope = host.Services.CreateScope())
+            {
+                IServiceProvider serviceProvider = scope.ServiceProvider;
+                try
+                {
+                    
+                    DbInitializer dbInitializer = serviceProvider.GetService<DbInitializer>();
+                    Task.WaitAll(dbInitializer.Seed());
+                }
+                catch (Exception ex)
+                {
+                    var logger = serviceProvider.GetService<ILogger<Program>>();
+                    logger.LogError("An error occurred while seed database: {0}", ex.Message);
+                    throw;
+                }
+            }
+            host.Run();
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .Build();
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            return WebHost.CreateDefaultBuilder(args)
+.UseStartup<Startup>()
+.Build();
+        }
     }
 }

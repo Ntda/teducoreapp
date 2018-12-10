@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TeduNetcore.Data.EF.Configurations;
 using TeduNetcore.Data.EF.Extensions;
@@ -52,6 +55,12 @@ namespace TeduNetcore.Data.EF
         public DbSet<AdvertistmentPosition> AdvertistmentPositions { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            //builder.Entity<Tag>(entity => entity.Property<string>("Id").HasMaxLength(50)
+            //                          .IsRequired(true)
+            //                          .HasColumnType("VarChar50"));
+            builder.Entity<AdvertistmentPage>(entity => entity.Property(c => c.Id).HasMaxLength(20)
+                                                                                     .IsRequired()
+                                                                                       .HasColumnType("nvarchar(20)"));
             builder.AddConfiguration(new TagConfiguration());
             builder.AddConfiguration(new BlogTagConfiguration());
             builder.AddConfiguration(new ContactDetailConfiguration());
@@ -83,6 +92,20 @@ namespace TeduNetcore.Data.EF
                 }
             }
             return base.SaveChanges();
+        }
+    }
+
+    public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
+    {
+        public AppDbContext CreateDbContext(string[] args)
+        {
+            IConfiguration configuration = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                                                                     .AddJsonFile("appsettings.json")
+                                                                     .Build();
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+            DbContextOptionsBuilder<AppDbContext> builder = new DbContextOptionsBuilder<AppDbContext>();
+            builder.UseSqlServer(connectionString);
+            return new AppDbContext(builder.Options);
         }
     }
 }

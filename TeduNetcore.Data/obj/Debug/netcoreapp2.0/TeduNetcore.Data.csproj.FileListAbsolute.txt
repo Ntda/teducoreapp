@@ -1,0 +1,12 @@
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\bin\Debug\netcoreapp2.0\TeduNetcore.Data.deps.json
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\bin\Debug\netcoreapp2.0\TeduNetcore.Data.dll
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\bin\Debug\netcoreapp2.0\TeduNetcore.Data.pdb
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\bin\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.dll
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\bin\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.pdb
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.csprojAssemblyReference.cache
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.csproj.CoreCompileInputs.cache
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.AssemblyInfoInputs.cache
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.AssemblyInfo.cs
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.csproj.CopyComplete
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.dll
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.pdb

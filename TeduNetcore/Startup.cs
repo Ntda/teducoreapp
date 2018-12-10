@@ -1,11 +1,17 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TeduNetcore.Data;
-using TeduNetcore.Models;
+using System.Threading.Tasks;
+using TeduNetcore.Application.Implementations;
+using TeduNetcore.Application.Interfaces;
+using TeduNetcore.Data.EF;
+using TeduNetcore.Data.EF.Repositories;
+using TeduNetcore.Data.Entities;
+using TeduNetcore.Data.IRepositories;
 using TeduNetcore.Services;
 
 namespace TeduNetcore
@@ -22,21 +28,29 @@ namespace TeduNetcore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                                     sqlOptBuilder => sqlOptBuilder.MigrationsAssembly("TeduNetcore.Data.EF")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<AppUser, AppRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
                 .AddDefaultTokenProviders();
 
             // Add application services.
+            services.AddSingleton(Mapper.Configuration);
+            services.AddScoped<IMapper>(mapper => new Mapper(mapper.GetRequiredService<AutoMapper.IConfigurationProvider>(), mapper.GetService));
+            services.AddTransient<UserManager<AppUser>>();
+            services.AddTransient<RoleManager<AppRole>>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<DbInitializer>();
 
+            services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
+            services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -59,6 +73,7 @@ namespace TeduNetcore
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            
         }
     }
 }
