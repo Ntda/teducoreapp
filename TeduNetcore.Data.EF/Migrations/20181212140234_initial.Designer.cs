@@ -12,7 +12,7 @@ using TeduNetcore.Data.Enums;
 namespace TeduNetcore.Data.EF.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20181209153724_initial")]
+    [Migration("20181212140234_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,9 +35,7 @@ namespace TeduNetcore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("RoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
@@ -53,44 +51,40 @@ namespace TeduNetcore.Data.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AppUserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.Property<string>("LoginProvider");
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ProviderKey");
+                    b.Property<string>("LoginProvider");
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<Guid>("UserId");
+                    b.Property<string>("ProviderKey");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                    b.HasKey("UserId");
 
-                    b.HasIndex("UserId");
-
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AppUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.Property<Guid>("UserId");
-
                     b.Property<Guid>("RoleId");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.Property<Guid>("UserId");
 
-                    b.HasIndex("RoleId");
+                    b.HasKey("RoleId", "UserId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AppUserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.Property<Guid>("UserId");
+                    b.Property<Guid>("UserId")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("LoginProvider");
 
@@ -98,9 +92,9 @@ namespace TeduNetcore.Data.EF.Migrations
 
                     b.Property<string>("Value");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("UserId");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("AppUserTokens");
                 });
 
             modelBuilder.Entity("TeduNetcore.Data.Entities.Advertistment", b =>
@@ -122,7 +116,7 @@ namespace TeduNetcore.Data.EF.Migrations
                         .HasMaxLength(250);
 
                     b.Property<string>("PositionId")
-                        .HasMaxLength(20);
+                        .HasMaxLength(50);
 
                     b.Property<int>("SortOrder");
 
@@ -154,13 +148,14 @@ namespace TeduNetcore.Data.EF.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(20);
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
                     b.Property<string>("Name")
                         .HasMaxLength(250);
 
                     b.Property<string>("PageId")
-                        .HasMaxLength(20);
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -172,7 +167,9 @@ namespace TeduNetcore.Data.EF.Migrations
             modelBuilder.Entity("TeduNetcore.Data.Entities.Announcement", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
                     b.Property<string>("Content")
                         .HasMaxLength(250);
@@ -204,18 +201,16 @@ namespace TeduNetcore.Data.EF.Migrations
 
                     b.Property<string>("AnnouncementId")
                         .IsRequired()
-                        .HasMaxLength(128);
+                        .HasMaxLength(50);
 
                     b.Property<bool?>("HasRead");
 
                     b.Property<Guid>("UserId")
-                        .HasMaxLength(450);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
                     b.HasIndex("AnnouncementId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("AnnouncementUsers");
                 });
@@ -225,26 +220,18 @@ namespace TeduNetcore.Data.EF.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                    b.Property<string>("ConcurrencyStamp");
 
                     b.Property<string>("Description")
                         .HasMaxLength(250);
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(256);
+                    b.Property<string>("Name");
 
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
+                    b.Property<string>("NormalizedName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("AppRoles");
                 });
 
             modelBuilder.Entity("TeduNetcore.Data.Entities.AppUser", b =>
@@ -260,15 +247,13 @@ namespace TeduNetcore.Data.EF.Migrations
 
                     b.Property<DateTime?>("BirthDay");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
+                    b.Property<string>("ConcurrencyStamp");
 
                     b.Property<DateTime>("DateCreated");
 
                     b.Property<DateTime>("DateModified");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256);
+                    b.Property<string>("Email");
 
                     b.Property<bool>("EmailConfirmed");
 
@@ -278,11 +263,9 @@ namespace TeduNetcore.Data.EF.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256);
+                    b.Property<string>("NormalizedEmail");
 
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256);
+                    b.Property<string>("NormalizedUserName");
 
                     b.Property<string>("PasswordHash");
 
@@ -296,20 +279,11 @@ namespace TeduNetcore.Data.EF.Migrations
 
                     b.Property<bool>("TwoFactorEnabled");
 
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256);
+                    b.Property<string>("UserName");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AppUsers");
                 });
 
             modelBuilder.Entity("TeduNetcore.Data.Entities.Bill", b =>
@@ -433,15 +407,14 @@ namespace TeduNetcore.Data.EF.Migrations
 
             modelBuilder.Entity("TeduNetcore.Data.Entities.BlogTag", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("BlogId");
 
                     b.Property<string>("TagId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -532,9 +505,7 @@ namespace TeduNetcore.Data.EF.Migrations
             modelBuilder.Entity("TeduNetcore.Data.Entities.Footer", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(255)")
-                        .HasMaxLength(255);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Content")
                         .IsRequired();
@@ -547,7 +518,8 @@ namespace TeduNetcore.Data.EF.Migrations
             modelBuilder.Entity("TeduNetcore.Data.Entities.Function", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("IconCss");
 
@@ -796,8 +768,7 @@ namespace TeduNetcore.Data.EF.Migrations
 
                     b.Property<string>("TagId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)")
-                        .HasMaxLength(255);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -886,8 +857,8 @@ namespace TeduNetcore.Data.EF.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -922,51 +893,6 @@ namespace TeduNetcore.Data.EF.Migrations
                     b.ToTable("WholePrices");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
-                {
-                    b.HasOne("TeduNetcore.Data.Entities.AppRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
-                {
-                    b.HasOne("TeduNetcore.Data.Entities.AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
-                {
-                    b.HasOne("TeduNetcore.Data.Entities.AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
-                {
-                    b.HasOne("TeduNetcore.Data.Entities.AppRole")
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("TeduNetcore.Data.Entities.AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
-                {
-                    b.HasOne("TeduNetcore.Data.Entities.AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("TeduNetcore.Data.Entities.Advertistment", b =>
                 {
                     b.HasOne("TeduNetcore.Data.Entities.AdvertistmentPosition", "AdvertistmentPosition")
@@ -978,7 +904,8 @@ namespace TeduNetcore.Data.EF.Migrations
                 {
                     b.HasOne("TeduNetcore.Data.Entities.AdvertistmentPage", "AdvertistmentPage")
                         .WithMany("AdvertistmentPositions")
-                        .HasForeignKey("PageId");
+                        .HasForeignKey("PageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TeduNetcore.Data.Entities.Announcement", b =>
@@ -994,11 +921,6 @@ namespace TeduNetcore.Data.EF.Migrations
                     b.HasOne("TeduNetcore.Data.Entities.Announcement", "Announcement")
                         .WithMany("AnnouncementUsers")
                         .HasForeignKey("AnnouncementId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("TeduNetcore.Data.Entities.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

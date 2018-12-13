@@ -15,6 +15,7 @@ namespace TeduNetcore.Data.Entities
         public Guid RoleId { get; set; }
 
         [StringLength(128)]
+        [MaxLength(128)]
         [Required]
         public string FunctionId { get; set; }
 

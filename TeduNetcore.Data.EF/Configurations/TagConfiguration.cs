@@ -14,9 +14,7 @@ namespace TeduNetcore.Data.EF.Configurations
         #endregion Const
         public override void Configure(EntityTypeBuilder<Tag> entity)
         {
-            entity.Property<string>("Id").HasMaxLength(MaxLengthTagId)
-                                      .IsRequired(true)
-                                      .HasColumnType(VarChar50);
+            entity.Property(p => p.Id).HasMaxLength(50).IsRequired().IsUnicode(false);
         }
     }
 }

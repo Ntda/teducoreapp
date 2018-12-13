@@ -8,7 +8,8 @@ namespace TeduNetcore.Data.EF.Configurations
     {
         public override void Configure(EntityTypeBuilder<AdvertistmentPosition> entity)
         {
-            entity.Property(c => c.Id).HasMaxLength(20).IsRequired();
+            entity.HasKey(c => c.Id);
+            entity.Property(c => c.Id).HasMaxLength(50).IsRequired().IsUnicode(false);
             // etc.
         }
     }

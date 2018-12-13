@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using TeduNetcore.Infrastructure.SharedKernel;
 
 namespace TeduNetcore.Data.Entities
 {
     [Table("BlogTags")]
-    public class BlogTag : DomainEntity<int>
+    public class BlogTag : DomainEntity<string>
     {
         public int BlogId { set; get; }
 

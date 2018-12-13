@@ -8,7 +8,7 @@ namespace TeduNetcore.Data.Entities
     [Table("AdvertistmentPositions")]
     public class AdvertistmentPosition : DomainEntity<string>
     {
-        [MaxLength(20)]
+        [Required]
         public string PageId { get; set; }
 
         [StringLength(250)]

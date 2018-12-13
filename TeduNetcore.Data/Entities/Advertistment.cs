@@ -22,7 +22,7 @@ namespace TeduNetcore.Data.Entities
         [StringLength(250)]
         public string Url { get; set; }
 
-        [StringLength(20)]
+        [StringLength(50)]
         public string PositionId { get; set; }
 
         public Status Status { set; get; }

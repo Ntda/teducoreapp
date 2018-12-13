@@ -37,8 +37,8 @@ namespace TeduNetcore
                 .AddDefaultTokenProviders();
 
             // Add application services.
-            services.AddSingleton(Mapper.Configuration);
-            services.AddScoped<IMapper>(mapper => new Mapper(mapper.GetRequiredService<AutoMapper.IConfigurationProvider>(), mapper.GetService));
+            //services.AddSingleton(Mapper.Configuration);
+            //services.AddScoped<IMapper>(mapper => new Mapper(mapper.GetRequiredService<AutoMapper.IConfigurationProvider>(), mapper.GetService));
             services.AddTransient<UserManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>>();
             services.AddTransient<IEmailSender, EmailSender>();

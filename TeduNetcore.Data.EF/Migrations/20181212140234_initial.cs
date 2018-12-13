@@ -22,22 +22,63 @@ namespace TeduNetcore.Data.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",
+                name: "AppRoles",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Description = table.Column<string>(maxLength: 250, nullable: true),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    NormalizedName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                    table.PrimaryKey("PK_AppRoles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "AppUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserLogins",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: true),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    ProviderKey = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserLogins", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserRoles",
+                columns: table => new
+                {
+                    RoleId = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserRoles", x => new { x.RoleId, x.UserId });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUsers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -48,24 +89,38 @@ namespace TeduNetcore.Data.EF.Migrations
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    Email = table.Column<string>(nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
                     FullName = table.Column<string>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(nullable: true),
+                    NormalizedUserName = table.Column<string>(nullable: true),
                     PasswordHash = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
                     SecurityStamp = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: false),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true)
+                    UserName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_AppUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AppUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<Guid>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUserTokens", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -151,7 +206,7 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "Footers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     Content = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -163,7 +218,7 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "Functions",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(type: "varchar(128)", nullable: false),
                     IconCss = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 128, nullable: false),
                     ParentId = table.Column<string>(maxLength: 128, nullable: true),
@@ -234,6 +289,21 @@ namespace TeduNetcore.Data.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true),
+                    RoleId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sizes",
                 columns: table => new
                 {
@@ -288,7 +358,7 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "Tags",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
+                    Id = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     Type = table.Column<string>(maxLength: 50, nullable: false)
                 },
@@ -301,9 +371,9 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "AdvertistmentPositions",
                 columns: table => new
                 {
-                    Id = table.Column<string>(maxLength: 20, nullable: false),
+                    Id = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     Name = table.Column<string>(maxLength: 250, nullable: true),
-                    PageId = table.Column<string>(maxLength: 20, nullable: true)
+                    PageId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -313,27 +383,6 @@ namespace TeduNetcore.Data.EF.Migrations
                         column: x => x.PageId,
                         principalTable: "AdvertistmentPages",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    RoleId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -341,7 +390,7 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "Announcements",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(unicode: false, maxLength: 50, nullable: false),
                     Content = table.Column<string>(maxLength: 250, nullable: true),
                     DateCreated = table.Column<DateTime>(nullable: false),
                     DateModified = table.Column<DateTime>(nullable: false),
@@ -353,94 +402,9 @@ namespace TeduNetcore.Data.EF.Migrations
                 {
                     table.PrimaryKey("PK_Announcements", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Announcements_AspNetUsers_UserId",
+                        name: "FK_Announcements_AppUsers_UserId",
                         column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(nullable: false),
-                    ProviderKey = table.Column<string>(nullable: false),
-                    ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
-                columns: table => new
-                {
-                    UserId = table.Column<Guid>(nullable: false),
-                    RoleId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
-                columns: table => new
-                {
-                    UserId = table.Column<Guid>(nullable: false),
-                    LoginProvider = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
-                    Value = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "AppUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -466,9 +430,9 @@ namespace TeduNetcore.Data.EF.Migrations
                 {
                     table.PrimaryKey("PK_Bills", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Bills_AspNetUsers_CustomerId",
+                        name: "FK_Bills_AppUsers_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "AspNetUsers",
+                        principalTable: "AppUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -496,9 +460,9 @@ namespace TeduNetcore.Data.EF.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Permissions_AspNetRoles_RoleId",
+                        name: "FK_Permissions_AppRoles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
+                        principalTable: "AppRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -545,10 +509,9 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "BlogTags",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Id = table.Column<string>(nullable: false),
                     BlogId = table.Column<int>(nullable: false),
-                    TagId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                    TagId = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -578,7 +541,7 @@ namespace TeduNetcore.Data.EF.Migrations
                     Description = table.Column<string>(maxLength: 250, nullable: true),
                     Image = table.Column<string>(maxLength: 250, nullable: true),
                     Name = table.Column<string>(maxLength: 250, nullable: true),
-                    PositionId = table.Column<string>(maxLength: 20, nullable: true),
+                    PositionId = table.Column<string>(maxLength: 50, nullable: true),
                     SortOrder = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
                     Url = table.Column<string>(maxLength: 250, nullable: true)
@@ -600,9 +563,9 @@ namespace TeduNetcore.Data.EF.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AnnouncementId = table.Column<string>(maxLength: 128, nullable: false),
+                    AnnouncementId = table.Column<string>(maxLength: 50, nullable: false),
                     HasRead = table.Column<bool>(nullable: true),
-                    UserId = table.Column<Guid>(maxLength: 450, nullable: false)
+                    UserId = table.Column<Guid>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -611,12 +574,6 @@ namespace TeduNetcore.Data.EF.Migrations
                         name: "FK_AnnouncementUsers_Announcements_AnnouncementId",
                         column: x => x.AnnouncementId,
                         principalTable: "Announcements",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AnnouncementUsers_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -725,7 +682,7 @@ namespace TeduNetcore.Data.EF.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ProductId = table.Column<int>(nullable: false),
-                    TagId = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                    TagId = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -785,50 +742,6 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "IX_AnnouncementUsers_AnnouncementId",
                 table: "AnnouncementUsers",
                 column: "AnnouncementId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AnnouncementUsers_UserId",
-                table: "AnnouncementUsers",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoleClaims_RoleId",
-                table: "AspNetRoleClaims",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName",
-                unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserClaims_UserId",
-                table: "AspNetUserClaims",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_RoleId",
-                table: "AspNetUserRoles",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "EmailIndex",
-                table: "AspNetUsers",
-                column: "NormalizedEmail");
-
-            migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
-                table: "AspNetUsers",
-                column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BillDetails_BillId",
@@ -925,19 +838,16 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "AnnouncementUsers");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
+                name: "AppUserClaims");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
+                name: "AppUserLogins");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
+                name: "AppUserRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
+                name: "AppUserTokens");
 
             migrationBuilder.DropTable(
                 name: "BillDetails");
@@ -973,6 +883,9 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "ProductTags");
 
             migrationBuilder.DropTable(
+                name: "RoleClaims");
+
+            migrationBuilder.DropTable(
                 name: "Slides");
 
             migrationBuilder.DropTable(
@@ -997,7 +910,7 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "Functions");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "AppRoles");
 
             migrationBuilder.DropTable(
                 name: "Colors");
@@ -1015,7 +928,7 @@ namespace TeduNetcore.Data.EF.Migrations
                 name: "AdvertistmentPages");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AppUsers");
 
             migrationBuilder.DropTable(
                 name: "ProductCategories");

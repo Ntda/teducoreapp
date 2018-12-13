@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -55,25 +56,35 @@ namespace TeduNetcore.Data.EF
         public DbSet<AdvertistmentPosition> AdvertistmentPositions { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims").HasKey(x => x.Id);
+
+            //builder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims")
+            //    .HasKey(x => x.Id);
+
+            builder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
+
+            builder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles")
+                .HasKey(x => new { x.RoleId, x.UserId });
+
+            builder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens")
+               .HasKey(x => new { x.UserId });
             //builder.Entity<Tag>(entity => entity.Property<string>("Id").HasMaxLength(50)
             //                          .IsRequired(true)
             //                          .HasColumnType("VarChar50"));
-            builder.Entity<AdvertistmentPage>(entity => entity.Property(c => c.Id).HasMaxLength(20)
-                                                                                     .IsRequired()
-                                                                                       .HasColumnType("nvarchar(20)"));
+
             builder.AddConfiguration(new TagConfiguration());
+            builder.AddConfiguration(new AdvertistmentPositionConfiguration());
             builder.AddConfiguration(new BlogTagConfiguration());
             builder.AddConfiguration(new ContactDetailConfiguration());
-
-            builder.AddConfiguration(new PageConfiguration());
             builder.AddConfiguration(new FooterConfiguration());
-
+            builder.AddConfiguration(new PageConfiguration());
             builder.AddConfiguration(new ProductTagConfiguration());
             builder.AddConfiguration(new SystemConfigConfiguration());
-            builder.AddConfiguration(new AdvertistmentPositionConfiguration());
+            builder.AddConfiguration(new AnnouncementConfiguration());
+            builder.AddConfiguration(new FunctionConfiguration());
 
 
-            base.OnModelCreating(builder);
+            //base.OnModelCreating(builder);
         }
 
         public override int SaveChanges()
