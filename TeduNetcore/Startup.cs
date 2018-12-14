@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
 using TeduNetcore.Application.Implementations;
 using TeduNetcore.Application.Interfaces;
 using TeduNetcore.Data.EF;
@@ -37,8 +36,18 @@ namespace TeduNetcore
                 .AddDefaultTokenProviders();
 
             // Add application services.
-            //services.AddSingleton(Mapper.Configuration);
-            //services.AddScoped<IMapper>(mapper => new Mapper(mapper.GetRequiredService<AutoMapper.IConfigurationProvider>(), mapper.GetService));
+            services.Configure<IdentityOptions>(opt =>
+            {
+                // Password setting
+                opt.Password.RequireDigit = true;
+                opt.Password.RequiredLength = 6;
+                opt.Password.RequireNonAlphanumeric = false;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireLowercase = false;
+            });
+            services.AddAutoMapper();
+            services.AddSingleton(Mapper.Configuration);
+            services.AddScoped<IMapper>(mapper => new Mapper(mapper.GetRequiredService<AutoMapper.IConfigurationProvider>(), mapper.GetService));
             services.AddTransient<UserManager<AppUser>>();
             services.AddTransient<RoleManager<AppRole>>();
             services.AddTransient<IEmailSender, EmailSender>();
@@ -72,8 +81,11 @@ namespace TeduNetcore
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+                    name:"areaRoute",
+                    template:"{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
-            
+
         }
     }
 }

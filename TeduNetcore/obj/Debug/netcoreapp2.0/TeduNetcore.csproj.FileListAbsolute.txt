@@ -1,6 +1,5 @@
 E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\TeduNetcore.csprojAssemblyReference.cache
 E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\TeduNetcore.csproj.CoreCompileInputs.cache
-E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\TeduNetcore.AssemblyInfoInputs.cache
 E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\TeduNetcore.AssemblyInfo.cs
 E:\asp-net core\TeduNetcore\TeduNetcore\bin\Debug\netcoreapp2.0\TeduNetcore.deps.json
@@ -19,3 +18,4 @@ E:\asp-net core\TeduNetcore\TeduNetcore\bin\Debug\netcoreapp2.0\TeduNetcore.Infr
 E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\TeduNetcore.csproj.CopyComplete
 E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\TeduNetcore.dll
 E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\TeduNetcore.pdb
+E:\asp-net core\TeduNetcore\TeduNetcore\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

@@ -18,7 +18,6 @@ namespace TeduNetcore
                 IServiceProvider serviceProvider = scope.ServiceProvider;
                 try
                 {
-                    
                     DbInitializer dbInitializer = serviceProvider.GetService<DbInitializer>();
                     Task.WaitAll(dbInitializer.Seed());
                 }

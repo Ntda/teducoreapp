@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace TeduNetcore.Models
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
-    public class ApplicationUser : IdentityUser
+    // Add profile data for application users by adding properties to the AppUser class
+    public class AppUser : IdentityUser
     {
     }
 }
