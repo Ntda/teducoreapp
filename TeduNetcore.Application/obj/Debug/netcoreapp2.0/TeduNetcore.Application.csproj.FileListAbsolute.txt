@@ -2,9 +2,7 @@ E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\Tedu
 E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\TeduNetcore.Application.dll
 E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\TeduNetcore.Application.pdb
 E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\TeduNetcore.Data.dll
-E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\TeduNetcore.Data.EF.dll
 E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.dll
-E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\TeduNetcore.Data.EF.pdb
 E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\TeduNetcore.Data.pdb
 E:\asp-net core\TeduNetcore\TeduNetcore.Application\bin\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.pdb
 E:\asp-net core\TeduNetcore\TeduNetcore.Application\obj\Debug\netcoreapp2.0\TeduNetcore.Application.csprojAssemblyReference.cache

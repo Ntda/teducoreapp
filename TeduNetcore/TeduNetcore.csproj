@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\AccountController.cs" />
+    <Compile Remove="Controllers\ManageController.cs" />
+    <Compile Remove="Extensions\UrlHelperExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="bower_components\bootstrap-daterangepicker\.bower.json" />
     <Content Include="bower_components\bootstrap-daterangepicker\bower.json" />
     <Content Include="bower_components\bootstrap-daterangepicker\daterangepicker.css" />
@@ -646,6 +652,7 @@
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -4486,11 +4493,50 @@
     <None Include="bower_components\nprogress\Notes.md" />
     <None Include="bower_components\nprogress\nprogress.js" />
     <None Include="bower_components\nprogress\Readme.md" />
+    <None Include="wwwroot\lib\animate.css\gulpfile.js" />
+    <None Include="wwwroot\lib\animate.css\LICENSE" />
+    <None Include="wwwroot\lib\bootbox\.gitignore" />
+    <None Include="wwwroot\lib\bootbox\.jshintrc" />
+    <None Include="wwwroot\lib\bootbox\.npmignore" />
+    <None Include="wwwroot\lib\bootbox\.travis.yml" />
+    <None Include="wwwroot\lib\bootbox\bootbox.js" />
+    <None Include="wwwroot\lib\bootbox\CONTRIBUTING.md" />
+    <None Include="wwwroot\lib\bootbox\LICENSE.md" />
+    <None Include="wwwroot\lib\bootbox\README.md" />
+    <None Include="wwwroot\lib\mustache\bin\mustache" />
+    <None Include="wwwroot\lib\mustache\CHANGELOG.md" />
+    <None Include="wwwroot\lib\mustache\hooks\install-hooks.sh" />
+    <None Include="wwwroot\lib\mustache\hooks\pre-commit" />
+    <None Include="wwwroot\lib\mustache\LICENSE" />
+    <None Include="wwwroot\lib\mustache\MIGRATING.md" />
+    <None Include="wwwroot\lib\mustache\mustache.js" />
+    <None Include="wwwroot\lib\mustache\mustache.js.nuspec" />
+    <None Include="wwwroot\lib\mustache\mustache.min.js" />
+    <None Include="wwwroot\lib\mustache\Rakefile" />
+    <None Include="wwwroot\lib\mustache\README.md" />
+    <None Include="wwwroot\lib\mustache\spec\_files\bom_as_whitespace.js" />
+    <None Include="wwwroot\lib\mustache\spec\_files\bom_as_whitespace.mustache" />
+    <None Include="wwwroot\lib\mustache\wrappers\dojo\mustache.js.post" />
+    <None Include="wwwroot\lib\mustache\wrappers\dojo\mustache.js.pre" />
+    <None Include="wwwroot\lib\mustache\wrappers\jquery\mustache.js.post" />
+    <None Include="wwwroot\lib\mustache\wrappers\jquery\mustache.js.pre" />
+    <None Include="wwwroot\lib\mustache\wrappers\mootools\mustache.js.post" />
+    <None Include="wwwroot\lib\mustache\wrappers\mootools\mustache.js.pre" />
+    <None Include="wwwroot\lib\mustache\wrappers\qooxdoo\mustache.js.post" />
+    <None Include="wwwroot\lib\mustache\wrappers\qooxdoo\mustache.js.pre" />
+    <None Include="wwwroot\lib\mustache\wrappers\yui3\mustache.js.post" />
+    <None Include="wwwroot\lib\mustache\wrappers\yui3\mustache.js.pre" />
+    <None Include="wwwroot\lib\notifyjs\.gitignore" />
+    <None Include="wwwroot\lib\notifyjs\CHANGES.md" />
+    <None Include="wwwroot\lib\notifyjs\dist\notify.js" />
+    <None Include="wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.js" />
+    <None Include="wwwroot\lib\notifyjs\README.md" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TeduNetcore.Application\TeduNetcore.Application.csproj" />
     <ProjectReference Include="..\TeduNetcore.Data.EF\TeduNetcore.Data.EF.csproj" />
+    <ProjectReference Include="..\TeduNetcore.Utilities\TeduNetcore.Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

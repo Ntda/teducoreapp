@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TeduNetcore.Data.Enums;
 
 namespace TeduNetcore.Application.ViewModels
 {
     public class ProductViewModel
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public int CategoryId { get; set; }
@@ -47,5 +47,10 @@ namespace TeduNetcore.Application.ViewModels
         public DateTime DateModified { set; get; }
 
         public Status Status { set; get; }
+
+        public override string ToString()
+        {
+            return $"Id:{Id} - CategoryName:{ProductCategory.Name} - Name:{Name} - Price:{Price} - Image:{Image} - CreateDated:{DateCreated}";
+        }
     }
 }

@@ -1,9 +1,9 @@
 E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\bin\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.deps.json
 E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\bin\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.dll
 E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\bin\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.pdb
+E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\obj\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.csprojAssemblyReference.cache
 E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\obj\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.csproj.CoreCompileInputs.cache
 E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\obj\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.AssemblyInfoInputs.cache
 E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\obj\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.AssemblyInfo.cs
 E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\obj\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.dll
 E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\obj\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.pdb
-E:\asp-net core\TeduNetcore\TeduNetcore.Infrastructure\obj\Debug\netcoreapp2.0\TeduNetcore.Infrastructure.csprojAssemblyReference.cache

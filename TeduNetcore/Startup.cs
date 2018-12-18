@@ -5,14 +5,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 using TeduNetcore.Application.Implementations;
 using TeduNetcore.Application.Interfaces;
 using TeduNetcore.Data.EF;
 using TeduNetcore.Data.EF.Repositories;
 using TeduNetcore.Data.Entities;
 using TeduNetcore.Data.IRepositories;
+using TeduNetcore.Helper;
 using TeduNetcore.Services;
-
 namespace TeduNetcore
 {
     public class Startup
@@ -40,7 +42,7 @@ namespace TeduNetcore
             {
                 // Password setting
                 opt.Password.RequireDigit = true;
-                opt.Password.RequiredLength = 6;
+                opt.Password.RequiredLength = 7;
                 opt.Password.RequireNonAlphanumeric = false;
                 opt.Password.RequireUppercase = false;
                 opt.Password.RequireLowercase = false;
@@ -52,15 +54,29 @@ namespace TeduNetcore
             services.AddTransient<RoleManager<AppRole>>();
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<DbInitializer>();
+            services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
+            services.AddMvc().AddJsonOptions(opt =>
+            {
+                IContractResolver resolver = opt.SerializerSettings.ContractResolver;
+                if (resolver != null)
+                {
+                    DefaultContractResolver res = resolver as DefaultContractResolver;
+                    res.NamingStrategy = null;
+                }
+            });
 
             services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
-            services.AddMvc();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IFunctionRepository, FunctionRepository>();
+            services.AddTransient<IFunctionService, FunctionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, DbInitializer dbInitializer)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddFile("Logs/tedu-{Date}.txt");
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
@@ -71,7 +87,6 @@ namespace TeduNetcore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
             app.UseStaticFiles();
 
             app.UseAuthentication();
@@ -82,8 +97,8 @@ namespace TeduNetcore
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
-                    name:"areaRoute",
-                    template:"{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
             });
 
         }

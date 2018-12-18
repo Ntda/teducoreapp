@@ -55,7 +55,7 @@ namespace TeduNetcore.Data.EF
                     DateModified = DateTime.Now,
                     Status = Status.Active
                 }, "123654$");
-                var user = await _userManager.FindByNameAsync("admin");
+                AppUser user = await _userManager.FindByNameAsync("admin");
                 await _userManager.AddToRoleAsync(user, "Admin");
             }
             if (!_context.Functions.Any())
@@ -246,6 +246,7 @@ namespace TeduNetcore.Data.EF
                     Status = Status.Active
                 });
             }
+            Task.WaitAll(_context.SaveChangesAsync());
         }
     }
 }

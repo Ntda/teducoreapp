@@ -10,7 +10,7 @@ namespace TeduNetcore.Data.EF
 {
     public class EFRepository<T, K> : IDisposable, IRepository<T, K> where T : DomainEntity<K>
     {
-        private readonly AppDbContext _appDbContext;
+        protected AppDbContext _appDbContext { get; set; }
         public EFRepository(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;

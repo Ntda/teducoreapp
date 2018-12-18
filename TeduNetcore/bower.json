@@ -28,6 +28,10 @@
     "flot-spline": "~0.8.2",
     "flot.curvedlines": "~1.1.1",
     "DateJS": "~1.0.0-rc3",
-    "moment": "~2.23.0"
+    "moment": "~2.23.0",
+    "notifyjs": "~0.4.2",
+    "bootbox": "~4.4.0",
+    "animate.css": "~3.7.0",
+    "mustache": "~3.0.1"
   }
 }

@@ -9,7 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TeduNetcore.Data.EF\TeduNetcore.Data.EF.csproj" />
     <ProjectReference Include="..\TeduNetcore.Data\TeduNetcore.Data.csproj" />
     <ProjectReference Include="..\TeduNetcore.Infrastructure\TeduNetcore.Infrastructure.csproj" />
   </ItemGroup>
