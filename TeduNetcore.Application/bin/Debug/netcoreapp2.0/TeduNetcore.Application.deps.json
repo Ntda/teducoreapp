@@ -10,7 +10,8 @@
         "dependencies": {
           "AutoMapper": "6.1.1",
           "TeduNetcore.Data": "1.0.0",
-          "TeduNetcore.Infrastructure": "1.0.0"
+          "TeduNetcore.Infrastructure": "1.0.0",
+          "TeduNetcore.Utilities": "1.0.0"
         },
         "runtime": {
           "TeduNetcore.Application.dll": {}
@@ -984,6 +985,11 @@
         "runtime": {
           "TeduNetcore.Infrastructure.dll": {}
         }
+      },
+      "TeduNetcore.Utilities/1.0.0": {
+        "runtime": {
+          "TeduNetcore.Utilities.dll": {}
+        }
       }
     }
   },
@@ -1636,6 +1642,11 @@
       "sha512": ""
     },
     "TeduNetcore.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TeduNetcore.Utilities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

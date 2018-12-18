@@ -1,7 +1,7 @@
 ﻿var tedu = {
     configs: {
-        pageSize: 10,
-        pageIndex: 1
+        pageSize: 5,
+        startPageIndex: 1
     },
     notify: function (message, type) {
         $.notify(message, {

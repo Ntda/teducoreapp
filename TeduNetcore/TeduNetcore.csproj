@@ -4531,6 +4531,11 @@
     <None Include="wwwroot\lib\notifyjs\dist\notify.js" />
     <None Include="wwwroot\lib\notifyjs\dist\styles\metro\notify-metro.js" />
     <None Include="wwwroot\lib\notifyjs\README.md" />
+    <None Include="wwwroot\lib\twbs-pagination\Gruntfile.js" />
+    <None Include="wwwroot\lib\twbs-pagination\jquery.twbsPagination.js" />
+    <None Include="wwwroot\lib\twbs-pagination\jquery.twbsPagination.min.js" />
+    <None Include="wwwroot\lib\twbs-pagination\LICENSE" />
+    <None Include="wwwroot\lib\twbs-pagination\README.md" />
   </ItemGroup>
 
   <ItemGroup>

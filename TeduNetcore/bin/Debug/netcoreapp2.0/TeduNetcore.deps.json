@@ -4816,7 +4816,8 @@
         "dependencies": {
           "AutoMapper": "6.1.1",
           "TeduNetcore.Data": "1.0.0",
-          "TeduNetcore.Infrastructure": "1.0.0"
+          "TeduNetcore.Infrastructure": "1.0.0",
+          "TeduNetcore.Utilities": "1.0.0"
         },
         "runtime": {
           "TeduNetcore.Application.dll": {}
