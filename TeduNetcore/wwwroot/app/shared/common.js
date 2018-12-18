@@ -56,10 +56,10 @@
             }
         });
     },
-    dateFormatJson: function () {
+    dateFormatJson: function (datetime) {
         if (datetime === null || datetime === '')
             return '';
-        var obj = this.GetDateTime(datetime);
+        var obj = GetDateTime(datetime);
         var month = obj.newdate.getMonth() + 1;
         var day = obj.newdate.getDate();
         var year = obj.newdate.getFullYear();
@@ -75,24 +75,24 @@
             mm = "0" + mm;
         return day + "/" + month + "/" + year;
     },
-    dateTimeFormatJson: function () {
+    dateTimeFormatJson: function (datetime) {
         if (datetime === null || datetime === '')
             return '';
-        var obj = this.GetDateTime(datetime);
+        var obj = GetDateTime(datetime);
         var hh = obj.newdate.getHours();
         var mm = obj.newdate.getMinutes();
         var ss = obj.newdate.getSeconds();
         if (obj.month < 10)
-            month = "0" + month;
+            month = "0" + obj.month;
         if (obj.day < 10)
-            day = "0" + day;
+            day = "0" + obj.day;
         if (hh < 10)
             hh = "0" + hh;
         if (mm < 10)
             mm = "0" + mm;
         if (ss < 10)
             ss = "0" + ss;
-        return day + "/" + month + "/" + year + " " + hh + ":" + mm + ":" + ss;
+        return day + "/" + month + "/" + obj.year + " " + hh + ":" + mm + ":" + ss;
     },
     startLoading: function () {
         if ($('.dv-loading').length > 0)
@@ -139,9 +139,9 @@ function GetDateTime(datetime) {
     var day = new Date(parseInt(datetime.substr(6)));
     var obj = {
         newdate: day,
-        month: newdate.getMonth() + 1,
-        day: newdate.getDate(),
-        year: newdate.getFullYear()
+        month: day.getMonth() + 1,
+        day: day.getDate(),
+        year: day.getFullYear()
     };
     return obj;
 }

@@ -2,7 +2,12 @@
 @{
     ViewData["Title"] = "Index";
 }
-@section scripts{ 
+@section Styles{
+    <link href="~/lib/jQuery-EasyUI/themes/bootstrap/easyui.css" rel="stylesheet" />
+    <link href="~/lib/jQuery-EasyUI/themes/icon.css" rel="stylesheet" />
+}
+<!-- Bootstrap -->
+@section scripts{
     <script src="~/app/controller/product/index.js"></script>
     <script>
         var product = new productController();
@@ -32,7 +37,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th width="10%">#</th>
                         <th>Danh mục</th>
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
@@ -51,14 +56,14 @@
 <script id="table-template" type="x-tmpl-mustache">
     <tr>
         <th scope="row">
-            <button id="btn btn-default btn-sm"><i class="fa fa-pencil"></i></button>
-            <button id="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-default btn-sm"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
         </th>
         <td>{{ProductCategoryName}}</td>
         <td>{{ProductName}}</td>
         <td>{{ProductPrice}}</td>
-        <td>{{ProductImage}}</td>
+        <td>{{{ProductImage}}}</td>
         <td>{{ProductCreatedDate}}</td>
-        <td>{{ProductStatus}}</td>
+        <td>{{{ProductStatus}}}</td>
     </tr>
 </script>

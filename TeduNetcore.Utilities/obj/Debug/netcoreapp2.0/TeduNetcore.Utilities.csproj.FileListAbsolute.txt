@@ -1,7 +1,6 @@
 E:\asp-net core\TeduNetcore\TeduNetcore.Utilities\bin\Debug\netcoreapp2.0\TeduNetcore.Utilities.deps.json
 E:\asp-net core\TeduNetcore\TeduNetcore.Utilities\bin\Debug\netcoreapp2.0\TeduNetcore.Utilities.dll
 E:\asp-net core\TeduNetcore\TeduNetcore.Utilities\bin\Debug\netcoreapp2.0\TeduNetcore.Utilities.pdb
-E:\asp-net core\TeduNetcore\TeduNetcore.Utilities\obj\Debug\netcoreapp2.0\TeduNetcore.Utilities.csprojAssemblyReference.cache
 E:\asp-net core\TeduNetcore\TeduNetcore.Utilities\obj\Debug\netcoreapp2.0\TeduNetcore.Utilities.csproj.CoreCompileInputs.cache
 E:\asp-net core\TeduNetcore\TeduNetcore.Utilities\obj\Debug\netcoreapp2.0\TeduNetcore.Utilities.AssemblyInfoInputs.cache
 E:\asp-net core\TeduNetcore\TeduNetcore.Utilities\obj\Debug\netcoreapp2.0\TeduNetcore.Utilities.AssemblyInfo.cs
