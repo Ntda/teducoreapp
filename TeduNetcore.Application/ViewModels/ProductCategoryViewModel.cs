@@ -29,5 +29,10 @@ namespace TeduNetcore.Application.ViewModels
         public string SeoDescription { set; get; }
 
         public ICollection<ProductViewModel> Products { set; get; }
+
+        public override string ToString()
+        {
+            return $"Id:{Id} - Name:{Name}";
+        }
     }
 }

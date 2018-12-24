@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TeduNetcore.Infrastructure\TeduNetcore.Infrastructure.csproj" />
+    <ProjectReference Include="..\TeduNetcore.Utilities\TeduNetcore.Utilities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -50,7 +50,7 @@ namespace TeduNetcore.Application.ViewModels
 
         public override string ToString()
         {
-            return $"Id:{Id} - CategoryName:{ProductCategory.Name} - Name:{Name} - Price:{Price} - Image:{Image} - CreateDated:{DateCreated}";
+            return $"Id:{Id} - CategoryName:{CategoryId} - Name:{Name} - Price:{Price} - Image:{Image} - CreateDated:{DateCreated}";
         }
     }
 }

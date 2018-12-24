@@ -10,3 +10,5 @@ E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore
 E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.csproj.CopyComplete
 E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.dll
 E:\asp-net core\TeduNetcore\TeduNetcore.Data\obj\Debug\netcoreapp2.0\TeduNetcore.Data.pdb
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\bin\Debug\netcoreapp2.0\TeduNetcore.Utilities.dll
+E:\asp-net core\TeduNetcore\TeduNetcore.Data\bin\Debug\netcoreapp2.0\TeduNetcore.Utilities.pdb

@@ -14,6 +14,7 @@ using TeduNetcore.Data.EF.Repositories;
 using TeduNetcore.Data.Entities;
 using TeduNetcore.Data.IRepositories;
 using TeduNetcore.Helper;
+using TeduNetcore.Infrastructure.Intarfaces;
 using TeduNetcore.Services;
 namespace TeduNetcore
 {
@@ -71,6 +72,11 @@ namespace TeduNetcore
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IFunctionRepository, FunctionRepository>();
             services.AddTransient<IFunctionService, FunctionService>();
+            services.AddTransient<IUnitOfWork, EFUnitOfWork>();
+            services.AddTransient<ITagRepository, TagRepository>();
+            services.AddTransient<IProductTagRepository, ProductTagRepository>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IRoleService, RoleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

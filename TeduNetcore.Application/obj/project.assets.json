@@ -1476,7 +1476,8 @@
           "Microsoft.EntityFrameworkCore": "2.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.0.0",
           "Microsoft.Extensions.Configuration": "2.0.0",
-          "TeduNetcore.Infrastructure": "1.0.0"
+          "TeduNetcore.Infrastructure": "1.0.0",
+          "TeduNetcore.Utilities": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TeduNetcore.Data.dll": {}

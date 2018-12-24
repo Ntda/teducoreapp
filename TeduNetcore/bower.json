@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "ckeditor": "~4.11.1",
+    "ckeditor": "4.5.10",
     "gentelella": "~1.4.0",
     "font-awesome": "~4.7.0",
     "nprogress": "~0.2.0",

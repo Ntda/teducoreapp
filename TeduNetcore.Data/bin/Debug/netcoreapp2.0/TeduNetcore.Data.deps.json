@@ -13,7 +13,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "2.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "2.0.0",
           "Microsoft.Extensions.Configuration": "2.0.0",
-          "TeduNetcore.Infrastructure": "1.0.0"
+          "TeduNetcore.Infrastructure": "1.0.0",
+          "TeduNetcore.Utilities": "1.0.0"
         },
         "runtime": {
           "TeduNetcore.Data.dll": {}
@@ -834,6 +835,11 @@
         "runtime": {
           "TeduNetcore.Infrastructure.dll": {}
         }
+      },
+      "TeduNetcore.Utilities/1.0.0": {
+        "runtime": {
+          "TeduNetcore.Utilities.dll": {}
+        }
       }
     }
   },
@@ -1404,6 +1410,11 @@
       "hashPath": "system.threading.tasks.4.0.11.nupkg.sha512"
     },
     "TeduNetcore.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TeduNetcore.Utilities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

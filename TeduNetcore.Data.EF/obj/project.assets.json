@@ -1704,7 +1704,8 @@
           "Microsoft.EntityFrameworkCore": "2.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.0.0",
           "Microsoft.Extensions.Configuration": "2.0.0",
-          "TeduNetcore.Infrastructure": "1.0.0"
+          "TeduNetcore.Infrastructure": "1.0.0",
+          "TeduNetcore.Utilities": "1.0.0"
         },
         "compile": {
           "bin/placeholder/TeduNetcore.Data.dll": {}
@@ -1721,6 +1722,16 @@
         },
         "runtime": {
           "bin/placeholder/TeduNetcore.Infrastructure.dll": {}
+        }
+      },
+      "TeduNetcore.Utilities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.0",
+        "compile": {
+          "bin/placeholder/TeduNetcore.Utilities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TeduNetcore.Utilities.dll": {}
         }
       }
     }
@@ -5859,6 +5870,11 @@
       "type": "project",
       "path": "../TeduNetcore.Infrastructure/TeduNetcore.Infrastructure.csproj",
       "msbuildProject": "../TeduNetcore.Infrastructure/TeduNetcore.Infrastructure.csproj"
+    },
+    "TeduNetcore.Utilities/1.0.0": {
+      "type": "project",
+      "path": "../TeduNetcore.Utilities/TeduNetcore.Utilities.csproj",
+      "msbuildProject": "../TeduNetcore.Utilities/TeduNetcore.Utilities.csproj"
     }
   },
   "projectFileDependencyGroups": {
