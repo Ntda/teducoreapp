@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using System.Linq;
+using System.Threading.Tasks;
 using TeduNetcore.Application.Interfaces;
 using TeduNetcore.Application.ViewModels;
 using TeduNetcore.Data.Entities;
@@ -14,6 +16,23 @@ namespace TeduNetcore.Application.Implementations
         {
             _userManager = userManager;
         }
+
+        public async Task<bool> CreateUser(UserViewModel userViewModel)
+        {
+            AppUser userEntity = Mapper.Map<UserViewModel, AppUser>(userViewModel);
+            IdentityResult user = await _userManager.CreateAsync(userEntity, userViewModel.Password);
+            if (user.Succeeded && userViewModel.Roles.Any())
+            {
+                AppUser appUser = await _userManager.FindByNameAsync(userEntity.UserName);
+                if (appUser != null)
+                {
+                    await _userManager.AddToRolesAsync(appUser, userViewModel.Roles);
+                }
+                return true;
+            }
+            return false;
+        }
+
         public PageResult<UserViewModel> GetAllPage(string keyWord, int indexCurrentPage, int pageSize)
         {
             IQueryable<AppUser> query = _userManager.Users;
@@ -41,6 +60,11 @@ namespace TeduNetcore.Application.Implementations
                 Result = user,
             };
             return paginationSet;
+        }
+
+        public Task UpdateUser(UserViewModel userViewModel)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

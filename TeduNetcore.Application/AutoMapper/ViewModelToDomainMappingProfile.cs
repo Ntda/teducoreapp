@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using TeduNetcore.Application.ViewModels;
 using TeduNetcore.Data.Entities;
 
@@ -12,6 +13,22 @@ namespace TeduNetcore.Application.AutoMapper
                 .ConstructUsing(productCategoryVM => InitProductCategory(productCategoryVM));
             CreateMap<ProductViewModel, Product>()
                 .ConstructUsing(productVM => InitProduct(productVM));
+            CreateMap<UserViewModel, AppUser>()
+                .ConstructUsing(userVM => InitAppUser(userVM));
+        }
+
+        private AppUser InitAppUser(UserViewModel userVM)
+        {
+            return new AppUser
+            {
+                Id = userVM.Id.GetValueOrDefault(Guid.Empty),
+                FullName = userVM.FullName,
+                UserName = userVM.UserName,
+                Email = userVM.Email,
+                PhoneNumber = userVM.PhoneNumber,
+                Avatar = userVM.Avatar,
+                Status = userVM.Status,
+            };
         }
 
         private Product InitProduct(ProductViewModel productVM)

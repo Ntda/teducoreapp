@@ -5,6 +5,28 @@
     }
 
     function RegisterEvent() {
+        //Init validation
+        $('#frmMaintainance').validate({
+            errorClass: 'red',
+            ignore: [],
+            lang: 'en',
+            rules: {
+                txtFullName: { required: true },
+                txtUserName: { required: true },
+                txtPassword: {
+                    required: true,
+                    minlength: 6
+                },
+                txtConfirmPassword: {
+                    equalTo: "#txtPassword"
+                },
+                txtEmail: {
+                    required: true,
+                    email: true
+                }
+            }
+        });
+
         // PageSize change
         $('#pageSize').on('change', function () {
             tedu.pageSize = $(this).val();
@@ -14,7 +36,6 @@
 
         // show form create user
         $('#btn-create').on('click', function (e) {
-
             // Reset from
             ResetFormMaintainance();
 
@@ -26,13 +47,53 @@
         });
 
         // Save user
-        $('#btn-save').on('click', function (e) {
-            var id = $('#hidId').val();
-            var fullName = $('#txtFullName').val();
-            var userName = $('#txtUserName').val();
-            var password = $('#txtPassword').val();
-            var email = $('#txtEmail').val();
-            var phoneNumber = $('#txtPhoneNumber').val();
+        $('#btnSave').on('click', function (e) {
+            if ($('#frmMaintainance').valid()) {
+                e.preventDefault();
+                var id = $('#hidId').val();
+                var fullName = $('#txtFullName').val();
+                var userName = $('#txtUserName').val();
+                var password = $('#txtPassword').val();
+                var email = $('#txtEmail').val();
+                var phoneNumber = $('#txtPhoneNumber').val();
+                var roles = [];
+                $.each($('input[name="ckRoles"]'), function (i, item) {
+                    if ($(item).prop('checked') === true)
+                        roles.push($(item).prop('value'));
+                });
+                var status = $('#ckStatus').prop('checked') === true ? 1 : 0;
+                $.ajax({
+                    type: 'POST',
+                    url: '/admin/user/SaveChange',
+                    data: {
+                        Id: id,
+                        FullName: fullName,
+                        UserName: userName,
+                        Password: password,
+                        Email: email,
+                        PhoneNumber: phoneNumber,
+                        Status: status,
+                        Roles: roles
+                    },
+                    dataType:'json',
+                    async: false,
+                    beforeSend: function () {
+                        tedu.startLoading();
+                    },
+                    success: function (res) {
+                        tedu.notify('save user success', 'success');
+                        $('#modal-add-edit').modal('hide');
+                        ResetFormMaintainance();
+                        LoadUser(true);
+                        tedu.stopLoading();
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        tedu.notify('Has an error', 'error');
+                        tedu.stopLoading();
+                    }
+                });
+            }
         });
     }
 
