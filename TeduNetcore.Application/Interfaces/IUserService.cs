@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TeduNetcore.Application.ViewModels;
 using TeduNetcore.Utilities.Dtos;
 
@@ -13,6 +10,8 @@ namespace TeduNetcore.Application.Interfaces
 
         Task<bool> CreateUser(UserViewModel userViewModel);
 
-        Task UpdateUser(UserViewModel userViewModel);
+        Task<bool> UpdateUser(UserViewModel userViewModel);
+
+        Task<bool> DeleteUser(string id);
     }
 }

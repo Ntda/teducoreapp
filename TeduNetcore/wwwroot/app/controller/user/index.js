@@ -1,9 +1,10 @@
-﻿var userController = function () {
+﻿var allUser = []
+var userController = function () {
     this.initialize = function () {
         RegisterEvent();
         LoadUser(false);
     }
-
+   
     function RegisterEvent() {
         //Init validation
         $('#frmMaintainance').validate({
@@ -32,6 +33,41 @@
             tedu.pageSize = $(this).val();
             tedu.startPageIndex = 1;
             LoadUser(true);
+        });
+
+        var seletedUser = '';
+        // Delete user
+        $('body').on('click', '.btn-delete', function () {
+            var id = $(this).data('id');
+            for (var i = 0; i < allUser.length; i++) {
+                if (allUser[i].Id === id) {
+                    seletedUser = user.UserName;
+                    break;
+                }
+            }
+
+            tedu.confirm('Do you delete user: ' + seletedUser, function () {
+                $.ajax({
+                    type: 'POST',
+                    data: {
+                        id: id
+                    },
+                    url: '/admin/user/DeleteUser',
+                    beforeSend: function () {
+                        tedu; startLoading();
+                    },
+                    success: function (res) {
+                        LoadUser(true);
+                        tedu.notify('Delete user: ' + seletedUser + ' successfully', 'success');
+                        tedu.stopLoading();
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        tedu.notify('Delete user: ' + seletedUser + ' fail', 'error');
+                        tedu.stopLoading();
+                    }
+                });
+            });
         });
 
         // show form create user
@@ -75,7 +111,7 @@
                         Status: status,
                         Roles: roles
                     },
-                    dataType:'json',
+                    dataType: 'json',
                     async: false,
                     beforeSend: function () {
                         tedu.startLoading();
@@ -133,6 +169,7 @@
             },
             success: function (users) {
                 var render = RenderData(users.Result);
+                allUser = users.Result;
                 $("#lbl-total-records").text(users.TotalRow);
                 if (render !== undefined) {
                     $('#tbl-content').html(render);

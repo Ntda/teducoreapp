@@ -15,6 +15,21 @@ namespace TeduNetcore.Application.AutoMapper
                 .ConstructUsing(productVM => InitProduct(productVM));
             CreateMap<UserViewModel, AppUser>()
                 .ConstructUsing(userVM => InitAppUser(userVM));
+            CreateMap<PermissionViewModel, Permission>()
+                .ConstructUsing(permissionVM => InitPermission(permissionVM));
+        }
+
+        private Permission InitPermission(PermissionViewModel permissionVM)
+        {
+            return new Permission
+            {
+                CanRead = permissionVM.CanRead,
+                CanCreate = permissionVM.CanCreate,
+                CanDelete = permissionVM.CanDelete,
+                CanUpdate = permissionVM.CanUpdate,
+                RoleId=permissionVM.RoleId,
+                FunctionId=permissionVM.FunctionId,
+            };
         }
 
         private AppUser InitAppUser(UserViewModel userVM)

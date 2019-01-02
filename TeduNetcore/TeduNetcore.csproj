@@ -4534,6 +4534,14 @@
     <None Include="wwwroot\lib\ckeditor\plugins\youtube_2.1.13\youtube\lang\vi.js" />
     <None Include="wwwroot\lib\ckeditor\plugins\youtube_2.1.13\youtube\lang\zh.js" />
     <None Include="wwwroot\lib\ckeditor\plugins\youtube_2.1.13\youtube\plugin.js" />
+    <None Include="wwwroot\lib\jquery-treegrid\Gruntfile.js" />
+    <None Include="wwwroot\lib\jquery-treegrid\js\jquery.cookie.js" />
+    <None Include="wwwroot\lib\jquery-treegrid\js\jquery.treegrid.bootstrap2.js" />
+    <None Include="wwwroot\lib\jquery-treegrid\js\jquery.treegrid.bootstrap3.js" />
+    <None Include="wwwroot\lib\jquery-treegrid\js\jquery.treegrid.js" />
+    <None Include="wwwroot\lib\jquery-treegrid\js\jquery.treegrid.min.js" />
+    <None Include="wwwroot\lib\jquery-treegrid\LICENSE" />
+    <None Include="wwwroot\lib\jquery-treegrid\README.md" />
     <None Include="wwwroot\lib\mustache\bin\mustache" />
     <None Include="wwwroot\lib\mustache\CHANGELOG.md" />
     <None Include="wwwroot\lib\mustache\hooks\install-hooks.sh" />

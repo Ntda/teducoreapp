@@ -47,6 +47,7 @@ namespace TeduNetcore.Application.Implementations
                             .Take(pageSize);
             System.Collections.Generic.List<UserViewModel> user = query.Select(q => new UserViewModel
             {
+                Id = q.Id,
                 UserName = q.UserName,
                 Avatar = q.Avatar,
                 Email = q.Email,
@@ -62,9 +63,31 @@ namespace TeduNetcore.Application.Implementations
             return paginationSet;
         }
 
-        public Task UpdateUser(UserViewModel userViewModel)
+        public async Task<bool> UpdateUser(UserViewModel userViewModel)
         {
-            throw new System.NotImplementedException();
+            AppUser userEntity = Mapper.Map<UserViewModel, AppUser>(userViewModel);
+            AppUser user = await _userManager.FindByIdAsync(userEntity.Id.ToString());
+            System.Collections.Generic.IList<string> currentRoles = await _userManager.GetRolesAsync(user);
+            System.Collections.Generic.IEnumerable<string> rolesNeedRemoved = currentRoles.Except(userViewModel.Roles);
+            IdentityResult resultRemoveRoles = await _userManager.RemoveFromRolesAsync(user, rolesNeedRemoved);
+            if (resultRemoveRoles.Succeeded)
+            {
+                IdentityResult resultUpdate = await _userManager.UpdateAsync(userEntity);
+                if (resultUpdate.Succeeded)
+                {
+                    System.Collections.Generic.IEnumerable<string> rolesNeedAdd = userViewModel.Roles.Except(currentRoles);
+                    IdentityResult resultAddRoles = await _userManager.AddToRolesAsync(userEntity, rolesNeedAdd);
+                    return resultAddRoles.Succeeded;
+                }
+            }
+            return false;
+        }
+
+        public async Task<bool> DeleteUser(string id)
+        {
+            AppUser user = await _userManager.FindByIdAsync(id);
+            IdentityResult result = await _userManager.DeleteAsync(user);
+            return result.Succeeded;
         }
     }
 }

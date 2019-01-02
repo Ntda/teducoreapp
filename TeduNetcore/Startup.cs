@@ -77,6 +77,7 @@ namespace TeduNetcore
             services.AddTransient<IProductTagRepository, ProductTagRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IRoleService, RoleService>();
+            services.AddTransient<IPermissionRepository, PermissionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

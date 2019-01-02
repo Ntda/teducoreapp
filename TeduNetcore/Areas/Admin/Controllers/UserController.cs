@@ -65,5 +65,12 @@ namespace TeduNetcore.Areas.Admin.Controllers
                 return new BadRequestObjectResult(error);
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string id)
+        {
+            await _uservice.DeleteUser(id);
+            return new OkObjectResult(id);
+        }
     }
 }
